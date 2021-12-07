@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	
+	I need a function for Object prop validation where it takes input object similar to props 
+	where each key is the name of an expected property, and each value may contain information 
+	about the type, required, and validator for that property.
+	
+	Output: returns a new validator function which itself takes an object as an input and 
+	returns true or false depending on whether the object conforms to the schema.
+
+	Additionally, when the value is false the function should log a helpful error 
+	message specific to the mode of failure.
+
+<script src="./objectpropvalidator.js"></script>
+
+<script>
+
+			var users = {
+
+				"props": {
+
+					"user": {
+						"name": "MAMEDUL ISLAM",
+						"age": 26
+					}
+
+				}
+
+			};
+
+			//
+			objectPropValidator( { props: {
+					user: {
+						type: Object,
+						required: true,
+						validator: objectPropValidator({
+							name: {
+								type: String,
+								required: true,
+							},
+							age: {
+								type: Number,
+								required: true,
+								validator(value) {
+									return value > 0;
+								},
+							},
+						}),
+					},
+				}
+			} )(users);
+
+	</script>
+</body>
+</html>
