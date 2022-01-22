@@ -1,0 +1,52 @@
+{
+	"name": "objectpropvalidator",
+	"version": "1.0.0",
+	"description": "Simple and smallest fine object properties validation checker with suggestions using console.",
+	"main": "./src/objectpropvalidator-v1.1.0.min.js",
+	"directories": {
+	  "doc": "docs",
+	  "example": "examples"
+	},
+	"scripts": {
+	  "test": "objectpropvalidator"
+	},
+	"keywords": [
+	  "objectpropvalidator",
+	  "objectpropvalidator",
+	  "Javascript",
+	  "Javascript Object",
+	  "Object Validator",
+	  "Object Validation",
+	  "Object Property",
+	  "Object Properties",
+	  "Object Property Validator",
+	  "Object Properties Validator",
+	  "Object Property Validation",
+	  "Object Properties Validation",
+	  "Object Properties Validation Function",
+	  "Object Properties Validation Fast Function",
+	  "Object Properties Validation Function with Suggestion",
+	  "Library",
+	  "Framework",
+	  "mamedul",
+	  "momedul",
+	  "mamedul islam",
+	  "momedul islam",
+	  "www.mamedul.ml",
+	  "Freelancer",
+	  "Developer",
+	  "Javascript Developer",
+	  "Bangladesh"
+	],
+	"author": "MAMEDUL ISLAM",
+	"license": "MIT",
+	"repository": {
+	  "type": "git",
+	  "url": "git+https://github.com/mamedul/objectpropvalidator.git"
+	},
+	"bugs": {
+	  "url": "https://github.com/mamedul/objectpropvalidator/issues"
+	},
+	"homepage": "https://mamedul.github.io/dev-projects/objectpropvalidator/"
+  }
+  

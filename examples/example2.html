@@ -31,42 +31,48 @@
 	<script src="../src/objectpropvalidator-v1.0.0.min.js"></script>
 
 	<script>
-
-		var users = {
-
+  
+		// We check this data validity
+		var data = {
 			"props": {
-
 				"user": {
-					"name": "MAMEDUL ISLAM",
-					"age": 26
+				"name": "MAMEDUL ISLAM",
+				"age": 26
 				}
-
 			}
-
 		};
-
-
-		objectPropValidator( { props: {
-				user: {
-					type: Object,
+	
+		// Validation object
+		var validationObject = { props: {
+			user: {
+				type: Object,
+				required: true,
+				validator: objectPropValidator({
+				name: {
+					type: String,
 					required: true,
-					validator: objectPropValidator({
-						name: {
-							type: String,
-							required: true,
-						},
-						age: {
-							type: Number,
-							required: true,
-							validator(value) {
-								return value > 0;
-							},
-						},
-					}),
 				},
+				age: {
+					type: Number,
+					required: true,
+					validator(value) {
+					return value > 0;
+					},
+				},
+				}),
+			},
 			}
-		} )(users);
-
-	</script>
+		};
+	
+	// Configurations
+	var config = {
+		enabled: true, // Configuration enabled
+		logLevel: 'log' // suggestion show via console.log
+		};
+	
+	
+	objectPropValidator(validationObject,config)(data);
+  
+  </script>
 </body>
 </html>

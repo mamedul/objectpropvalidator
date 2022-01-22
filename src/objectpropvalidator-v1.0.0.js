@@ -1,7 +1,7 @@
 /**
- * objectPropValidator- simple and fine object properties validation checker
+ * objectPropValidator- Simple and fine object properties validation checker
  * 
- * Copyright (c) 2021 by MAMEDUL ISLAM (https://mamedul.github.io/)
+ * Copyright (c) 2022 by MAMEDUL ISLAM (https://mamedul.github.io/)
  *
  * Licensed under the MIT license:
  *   https://opensource.org/licenses/MIT
@@ -11,7 +11,7 @@
  * 
  * Version: 1.0.0
  */
- (function(global, factory) {
+(function(global, factory) {
     if (typeof define === 'function' && define.amd) {
         define([], factory);
     } else if (typeof exports === 'object') {
@@ -31,10 +31,10 @@
         var rawType = "";
         try {
             match = variable && variable.toString().match(/^\s*function (\w+)/);
-        } catch {}
+        } catch(err){}
         try {
             rawType = Object.prototype.toString.call(variable).slice(8, -1);
-        } catch {}
+        } catch(err){}
         return match ? match[1] : (rawType.length > 0 ? rawType : ((typeof variable == "function" || typeof variable.name != "undefined") ? variable.name : ''));
     };
 
@@ -75,7 +75,7 @@
     };
 
     var _isEmpty = function(variable) {
-        if (typeof variable === 'undefined' || variable === "" || variable === 0 || variable === [] || variable === {} || variable === false || variable === null || isNaN(variable) || variable === function() {}) {
+        if (typeof variable === 'undefined' || variable === "" || variable === 0 || variable === [] || variable === {} || variable === false || variable === null || variable === NaN) {
             return true;
         }
         return false;
