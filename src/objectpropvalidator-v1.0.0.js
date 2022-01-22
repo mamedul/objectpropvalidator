@@ -1,5 +1,5 @@
 /**
- * objectPropValidator- Simple and fine object properties validation checker
+ * objectPropValidator- Simple and small fine object properties validation checker with suggestions
  * 
  * Copyright (c) 2022 by MAMEDUL ISLAM (https://mamedul.github.io/)
  *

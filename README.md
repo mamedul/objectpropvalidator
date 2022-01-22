@@ -1,6 +1,6 @@
 # objectpropvalidator
 
--Simple and smallest fine object properties validation checker with suggestions using console
+-Simple and small fine object properties validation checker with suggestions using console
 
 
 ## Features

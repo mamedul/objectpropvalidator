@@ -1,7 +1,7 @@
 {
 	"name": "objectpropvalidator",
 	"version": "1.0.0",
-	"description": "Simple and smallest fine object properties validation checker with suggestions using console.",
+	"description": "Simple and small fine object properties validation checker with suggestions using console.",
 	"main": "./src/objectpropvalidator-v1.1.0.min.js",
 	"directories": {
 	  "doc": "docs",
