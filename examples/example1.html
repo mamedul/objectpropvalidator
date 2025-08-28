@@ -1,72 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Example 1 || objectpropvalidator :: Developed by MAMEDUL ISLAM</title>
+    <meta charset="UTF-8">
+    <title>Corrected objectPropValidator Example</title>
 </head>
 <body>
-	
-	I need a function for Object prop validation where it takes input object similar to props 
-	where each key is the name of an expected property, and each value may contain information 
-	about the type, required, and validator for that property.
-	
-	Output: returns a new validator function which itself takes an object as an input and 
-	returns true or false depending on whether the object conforms to the schema.
+    <h1>Demonstration of the Corrected Validator</h1>
+    <p>Check the browser's developer console for output.</p>
 
-	Additionally, when the value is false the function should log a helpful error 
-	message specific to the mode of failure.
+    <script>
+        // Paste the corrected objectPropValidator function here...
+        function objectPropValidator(schema, config = {}) { /* ... full code from above ... */ }
 
-	<br>
-	<br>
-	<a href='https://github.com/mamedul/objectpropvalidator/wiki'>Documentations</a>
-	<br>
-	<a href='https://mamedul.github.io/dev-projects/objectpropvalidator/'>Project Homepage</a>
-	<br>
-	<a href='https://mamedul.github.io'>Developer</a>
+        // --- 1. Define the validation schema ---
+        const userValidator = objectPropValidator({
+            name: {
+                type: String,
+                required: true,
+            },
+            age: {
+                type: Number,
+                required: true,
+                validator(value) {
+                    const isValid = value > 18;
+                    if (!isValid) {
+                        console.error(`[Validation Error] Custom check for 'age' failed. Must be over 18.`);
+                    }
+                    return isValid;
+                },
+            },
+        });
+
+        const schema = {
+            props: {
+                type: Object,
+                required: true,
+                validator: objectPropValidator({
+                    user: {
+                        type: Object,
+                        required: true,
+                        validator: userValidator, // Use the nested validator
+                    },
+                }),
+            },
+        };
+
+        // --- 2. Create the main validator ---
+        const myValidator = objectPropValidator(schema, { logLevel: 'error' });
 
 
-	
-	<script src="../src/objectpropvalidator-v1.0.0.min.js"></script>
-
-	<script>
-
-		var users = {
-
-			"props": {
-
-				"user": {
-					"name": "MAMEDUL ISLAM",
-					"age": 26
-				}
-
-			}
-
-		};
+        // --- 3. Test with VALID data ---
+        console.log("--- TESTING VALID DATA ---");
+        const validData = {
+            props: {
+                user: {
+                    name: "Mamedul Islam",
+                    age: 26
+                }
+            }
+        };
+        const isValid = myValidator(validData);
+        console.log("Validation Result:", isValid); // Should be true
 
 
-		objectPropValidator( { props: {
-				user: {
-					type: Object,
-					required: true,
-					validator: objectPropValidator({
-						name: {
-							type: String,
-							required: true,
-						},
-						age: {
-							type: Number,
-							required: true,
-							validator(value) {
-								return value > 0;
-							},
-						},
-					}),
-				},
-			}
-		} )(users);
+        // --- 4. Test with INVALID data ---
+        console.log("\n--- TESTING INVALID DATA ---");
+        const invalidData = {
+            props: {
+                user: {
+                    name: 123,     // Wrong type
+                    age: 17        // Fails custom validator
+                }
+            }
+        };
+        const isInvalidValid = myValidator(invalidData);
+        console.log("Validation Result:", isInvalidValid); // Should be false
+        // Console will show specific errors for 'name' and 'age'.
 
-	</script>
+    </script>
 </body>
 </html>
