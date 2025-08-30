@@ -1,9 +1,11 @@
 # objectPropValidator: Simple, Recursive JavaScript Object Validation
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/mamedul/objectpropvalidator)
+[![Version](https://img.shields.io/badge/version-2.0.1-blue.svg)](https://github.com/mamedul/objectpropvalidator)
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=mamedul.objectpropvalidator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Made with Love in Bangladesh](https://img.shields.io/badge/Made%20with%20%E2%9D%A4%EF%B8%8F%20in-Bangladesh-green.svg)](https://mamedul.github.io/)
 [![Hire Me](https://img.shields.io/badge/Hire%20Me-Available-brightgreen.svg)](https://mamedul.github.io/)
+
 
 **objectPropValidator** is a lightweight, zero-dependency JavaScript utility for validating object properties against a defined schema. It's designed to be simple, flexible, and powerful, allowing for recursive validation of nested objects with clear, helpful error messages.
 
@@ -27,10 +29,14 @@ Whether you're validating API responses, configuration objects, or function argu
 You can use `objectPropValidator` by directly including the script in your HTML.
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/mamedul/objectpropvalidator@main/dist/objectpropvalidator.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/mamedul/objectpropvalidator/src/objectpropvalidator.min.js"></script>
 ```
 
-*(Note: Once published to npm, installation instructions for `npm install objectpropvalidator` would go here.)*
+Or for `npm` installation
+
+```ssh
+npm install objectpropvalidator
+```
 
 ---
 
@@ -184,7 +190,7 @@ Contributions are welcome! Please feel free to submit a pull request or open an 
 
 ## License
 
-This plugin is licensed under the **MIT License**. Copyright (c) 2022 by [**Mamedul Islam**](https://mamedul.github.io/).
+This project is licensed under the **MIT License**. Copyright (c) 2022 by [**Mamedul Islam**](https://mamedul.github.io/).
 
 See the [LICENSE](https://opensource.org/licenses/MIT) file for more details.
 
@@ -192,7 +198,7 @@ See the [LICENSE](https://opensource.org/licenses/MIT) file for more details.
 
 ## Author & Hire Me
 
-This plugin was created and is maintained by [**Mamedul Islam**](https://mamedul.github.io/).
+This project was created and is maintained by [**Mamedul Islam**](https://mamedul.github.io/).
 
 
 I am a passionate **web developer** with experience in creating interactive and user-friendly web components. I am currently *available for freelance projects* or full-time opportunities.

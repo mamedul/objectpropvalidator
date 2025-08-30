@@ -3,17 +3,28 @@
 	"version": "2.0.0",
 	"description": "Simple, Recursive JavaScript Object Validation with suggestions using console.",
 	"main": "./src/objectpropvalidator.min.js",
+	"files": [
+		"src",
+		"LICENSE",
+		"CHANGELOG.md",
+		"README.md"
+	],
 	"directories": {
 	  "doc": "docs",
 	  "example": "examples"
 	},
 	"scripts": {
-	  "test": "objectpropvalidator"
+	  "test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [
 	  "objectpropvalidator",
 	  "objectpropvalidator",
 	  "Javascript",
+	  "object",
+	  "property",
+	  "schema",
+	  "recursive",
+	  "validate",
 	  "Javascript Object",
 	  "Object Validator",
 	  "Object Validation",
@@ -34,13 +45,16 @@
 	  "momedul",
 	  "mamedul islam",
 	  "momedul islam",
-	  "www.mamedul.ml",
+	  "mamedul.github.io",
+	  "www.mamedul.github.io",
 	  "Freelancer",
 	  "Developer",
 	  "Javascript Developer",
+	  "Wordpress Developer",
+	  "WooCommerce Developer",
 	  "Bangladesh"
 	],
-	"author": "MAMEDUL ISLAM",
+	"author": "MAMEDUL ISLAM (https://mamedul.github.io/)",
 	"license": "MIT",
 	"repository": {
 	  "type": "git",

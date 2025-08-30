@@ -2,17 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Corrected objectPropValidator Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example 1 || objectPropValidator </title>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7fafc;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            max-width: 42rem;
+            width: 100%;
+        }
+        h1 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a202c;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #2d3748;
+        }
+        p {
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+        }
+
+        .bg-light {
+            background-color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 0.375rem;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Demonstration of the Corrected Validator</h1>
-    <p>Check the browser's developer console for output.</p>
+    <div class="container">
+        <h1>objectPropValidator Demonstration</h1>
+        <p>Open your browser's developer console (usually by pressing F12) to see the detailed validation output from
+            the script.</p>
+        <div class="bg-light">
+            <h2>What's Happening?</h2>
+            <p>The script in this page defines a validation schema and then tests it against two different data objects:
+                one that is valid and one that is invalid. The results, including specific error messages for the invalid data,
+                are logged to the console.</p>
+        </div>
+    </div>
 
+    <script src="../src/objectpropvalidator.min.js"></script>
     <script>
-        // Paste the corrected objectPropValidator function here...
-        function objectPropValidator(schema, config = {}) { /* ... full code from above ... */ }
-
         // --- 1. Define the validation schema ---
+        // First, create a validator for a nested user object
         const userValidator = objectPropValidator({
             name: {
                 type: String,
@@ -21,6 +76,7 @@
             age: {
                 type: Number,
                 required: true,
+                // Custom validator for more complex logic
                 validator(value) {
                     const isValid = value > 18;
                     if (!isValid) {
@@ -31,6 +87,7 @@
             },
         });
 
+        // Next, define the main schema which uses the userValidator
         const schema = {
             props: {
                 type: Object,
@@ -39,15 +96,16 @@
                     user: {
                         type: Object,
                         required: true,
-                        validator: userValidator, // Use the nested validator
+                        validator: userValidator, // Use the nested validator here
                     },
                 }),
             },
         };
 
         // --- 2. Create the main validator ---
-        const myValidator = objectPropValidator(schema, { logLevel: 'error' });
-
+        const myValidator = objectPropValidator(schema, {
+            logLevel: 'error'
+        });
 
         // --- 3. Test with VALID data ---
         console.log("--- TESTING VALID DATA ---");
@@ -62,21 +120,19 @@
         const isValid = myValidator(validData);
         console.log("Validation Result:", isValid); // Should be true
 
-
         // --- 4. Test with INVALID data ---
         console.log("\n--- TESTING INVALID DATA ---");
         const invalidData = {
             props: {
                 user: {
-                    name: 123,     // Wrong type
-                    age: 17        // Fails custom validator
+                    name: 123, // Wrong type
+                    age: 17 // Fails custom validator
                 }
             }
         };
         const isInvalidValid = myValidator(invalidData);
         console.log("Validation Result:", isInvalidValid); // Should be false
         // Console will show specific errors for 'name' and 'age'.
-
     </script>
 </body>
 </html>

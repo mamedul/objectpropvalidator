@@ -10,7 +10,7 @@
  * Project home:
  *   https://mamedul.github.io/objectpropvalidator
  * 
- * Version: 2.0.0
+ * Version: 2.0.1
  */
 /**
  * @param {object} schema - The validation schema object. Rules for each property
@@ -24,7 +24,7 @@
 function objectPropValidator(schema, config = {}) {
   // Use the specified console method, or default to console.error
   // Added error-safe check for the existence of the console method
-  const log = (console && console[config.logLevel]) || (console && console.error) || (() => {});
+  const log = config.logLevel === null ? (() => { }) : ( (console && console[config.logLevel]) || (console && console.error) || (() => { }) );
 
   /**
    * Gets a reliable string name for a value's type.
@@ -49,8 +49,8 @@ function objectPropValidator(schema, config = {}) {
 
     // A type check on the data parameter itself
     if (data === null || typeof data !== 'object') {
-        log(`[Validation Error] Invalid data provided. Expected 'Object' but received '${getTypeName(data)}'.`);
-        return false;
+      log(`[Validation Error] Invalid data provided. Expected 'Object' but received '${getTypeName(data)}'.`);
+      return false;
     }
 
     // Iterate over each rule in the schema
@@ -60,9 +60,9 @@ function objectPropValidator(schema, config = {}) {
       const value = Object.prototype.hasOwnProperty.call(data, key) ? data[key] : undefined;
       // Added check to ensure rules is a valid object
       if (!rules || typeof rules !== 'object') {
-          log(`[Schema Error] Invalid schema rule for property '${key}'. Expected 'Object'.`);
-          isOverallValid = false;
-          continue;
+        log(`[Schema Error] Invalid schema rule for property '${key}'. Expected 'Object'.`);
+        isOverallValid = false;
+        continue;
       }
 
       // 1. Required check: Fails if the rule is 'required' and value is undefined.
@@ -95,14 +95,14 @@ function objectPropValidator(schema, config = {}) {
       // This is how recursive validation is handled.
       if (typeof rules.validator === 'function') {
         try {
-            // The custom/nested validator is responsible for its own specific logging.
-            // We just check its final boolean result.
-            if (!rules.validator(value)) {
-              isOverallValid = false;
-            }
-        } catch (e) {
-            log(`[Validator Error] An exception occurred while executing custom validator for property '${key}': ${e.message}`);
+          // The custom/nested validator is responsible for its own specific logging.
+          // We just check its final boolean result.
+          if (!rules.validator(value)) {
             isOverallValid = false;
+          }
+        } catch (e) {
+          log(`[Validator Error] An exception occurred while executing custom validator for property '${key}': ${e.message}`);
+          isOverallValid = false;
         }
       }
     }
